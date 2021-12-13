@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <style type="text/css">
+            .exercice{margin-top:50px;background-color:lightgray;padding:25px;}
+            .exercice h2{border-bottom:1px solid black;padding-bottom:2px;}
+            .division1.division2{border:1px solid black;}
+            form div{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 20%;  
+                margin-bottom:10px;          
+            }
+            .btn{
+                margin-top:20px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="exercice1" class="exercice">
+            <h2>Exercice 1</h2>
+
+            <form action=""  method="POST" name="commentForm" id="commentForm">
+                <div>
+                    <label for="nom" >Nom </label>
+                    <input  type="text" name="nom" id="nom" value="" placeholder="Nom" required />
+                </div>
+                <div>
+                    <label for="prenom">Prénom </label>
+                    <input  type="text" name="prenom" id="prenom" value="" placeholder="Prénom" />
+                </div>
+                
+                <div>
+                   <label for="email">E-mail </label> 
+                    <input  type="text" name="email" id="email" value="" placeholder="E-mail" />
+                </div>
+                <div>
+                   <label for="datepicker"> Date </label>
+                    <input  type="date" id="datepicker" name="date" />
+                </div>
+                <div><input style="margin-left:100px;" class="btn" type="submit" value="Envoyer" /></div>		
+            </form>
+        </div>
+
+        <div id="exercice2" class="exercice">
+            <h2>Exercice 2</h2>
+            <div class="division1 division2">
+                <p>Moniteur des pharmacies</p>
+            </div>
+        </div>
+
+        <div id="exercice2" class="exercice">
+            <h2>Exercice 3</h2>
+            <form action=""  method="POST" id="formTva">
+                <label for="HT">HT</label>
+                <input type="number" value="" name="ht" id="ht" required>
+                <label for="TVA">TVA</label>
+                <select name="tva" id="tva">
+                    <option value="">Choisissez votre TVA</option>
+                    <option value="19.5">19.5</option>
+                    <option value="5.5">5.5</option>
+                </select>
+                <label for="TTC">TTC</label>
+                <input type="number" value="" name="ttc" id="ttc" required >
+                <button type="button">Soumettre</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        let ht= document.getElementById('ht');
+        let tva = document.getElementById('tva');
+        let ttc = document.getElementById('ttc');
+        let formTva=document.getElementById('formTva');
+        let htValue=0;
+        let tvaValue=0;
+        ttcValue=0;
+
+        function prixHt(value){
+            htValue=value;
+        }
+        ht.addEventListener('change', ()=>{
+            prixHt(ht.value);
+        });
+
+        function prixTva(value){
+            tvaValue= value;
+        }
+        tva.addEventListener('change', ()=>{
+            prixTva(tva.value);
+        })
+        function calcul(val1, val2){
+            let value= (val1*val2)/100;
+                ttcValue= val1+value;
+        }
+        formTva.addEventListener('click', ()=>{     
+            calcul(parseFloat(htValue),parseFloat(tvaValue));
+            ttc.value=ttcValue;
+        })
+            
+    </script>
+</html>
